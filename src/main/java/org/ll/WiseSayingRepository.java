@@ -50,6 +50,7 @@ public class WiseSayingRepository {
 //        for(WiseSaying wiseSaying: wiseSayings){
 //            System.out.println(wiseSaying.num +" / " + wiseSaying.content + " / " + wiseSaying.author);
 //        }
+
         util.readJsonFile();
         return;
     }

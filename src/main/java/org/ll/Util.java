@@ -12,6 +12,7 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 import java.io.IOException;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -24,10 +25,10 @@ public class Util {
     }
     //json 파일 저장
     void makeJsonFile(WiseSaying wiseSaying){
-		obj.put("번호", wiseSaying.num);
-        obj.put("내용", wiseSaying.content);
-        obj.put("저자", wiseSaying.author);
-
+        JSONArray ja = new JSONArray();
+        ja.add("내용: "+wiseSaying.content);
+        ja.add("저자: "+wiseSaying.author);
+        obj.put(wiseSaying.num, ja);
 		try {
             FileWriter file = new FileWriter("C:\\Users\\aadds\\Desktop\\codeLion\\javaPrac\\Java_SSG\\src\\wiseSaying\\wiseSaying.json");
             file.write(obj.toJSONString());
@@ -39,25 +40,27 @@ public class Util {
     }
 
     //파일 전체 읽기
-    void readJsonFile(){
+    Map readJsonFile(){
+
         JSONParser parser = new JSONParser();
+        Map map = new HashMap<String, String>();
         try {
             FileReader reader = new FileReader("C:\\Users\\aadds\\Desktop\\codeLion\\javaPrac\\Java_SSG\\src\\wiseSaying\\wiseSaying.json");
             Object obj = parser.parse(reader);
             JSONObject jsonObject = (JSONObject) obj;
 
-            Map map = new HashMap<String, String>();
-            map.put("번호", jsonObject.get("name") );
-            map.put("내용", jsonObject.get("age") );
-            map.put("저자", jsonObject.get("school") );
+            for(int i=0; i<3; i++){
+                map.put(i+1,jsonObject.get("1"));
+                System.out.println(jsonObject.get("1"));
+                //문자열 처리
+            }
+
             reader.close();
-
-
-
 
         } catch (IOException | ParseException e) {
             e.printStackTrace();
         }
+        return map;
     }
 }
 
