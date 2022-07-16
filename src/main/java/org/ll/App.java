@@ -1,5 +1,6 @@
 package org.ll;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class App {
@@ -7,7 +8,7 @@ public class App {
     App(){
         sc = new Scanner(System.in);
     }
-    public void run(){
+    public void run() throws IOException {
         System.out.println("===명언===");
         WiseSayingController wc = new WiseSayingController(sc);
 

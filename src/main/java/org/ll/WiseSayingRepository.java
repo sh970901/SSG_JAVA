@@ -1,5 +1,6 @@
 package org.ll;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -11,7 +12,7 @@ public class WiseSayingRepository {
     Util util;
     Scanner sc;
 
-    WiseSayingRepository(Scanner sc){
+    WiseSayingRepository(Scanner sc) throws IOException {
         this.sc = sc;
         wiseSayingLastId=0;
         wiseSayings = new ArrayList<>();
@@ -47,20 +48,13 @@ public class WiseSayingRepository {
     }
     //목록 처리
     void allRead(){
-//        for(WiseSaying wiseSaying: wiseSayings){
-//            System.out.println(wiseSaying.num +" / " + wiseSaying.content + " / " + wiseSaying.author);
-//        }
-
         util.readJsonFile();
         return;
     }
     //삭제 처리
-    void remove(WiseSaying wiseSaying){
-        if(wiseSaying == null){
-            return;
-        }
-        System.out.println(wiseSaying.num +"번 명언이 삭제되었습니다.");
-        wiseSayings.remove(wiseSaying);
+    void remove(int num){
+        util.remove(num);
+        System.out.println(num +"번 명언이 삭제되었습니다.");
         return;
     }
 

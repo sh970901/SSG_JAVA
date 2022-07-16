@@ -1,5 +1,6 @@
 package org.ll;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -9,7 +10,7 @@ public class WiseSayingController {
     WiseSaying say;
     WiseSayingRepository repository;
     List<WiseSaying> says;
-    WiseSayingController(Scanner sc){
+    WiseSayingController(Scanner sc) throws IOException {
         this.sc = sc;
         repository = new WiseSayingRepository(sc);
         says= repository.getAllWiseSayings();
@@ -23,7 +24,6 @@ public class WiseSayingController {
         System.out.print("작가: ");
         String author = sc.nextLine();
         repository.write(content, author);
-        System.out.println("등록 되었습니다.");
     }
 
     //목록
@@ -40,8 +40,8 @@ public class WiseSayingController {
             return;
         }
         int num = Rq.getId(url);
-        WiseSaying wiseSaying = repository.findWiseSaying(num);
-        repository.remove(wiseSaying);
+//        WiseSaying wiseSaying = repository.findWiseSaying(num);
+        repository.remove(num);
         return;
     }
 
