@@ -53,8 +53,8 @@ public class WiseSayingController {
             return;
         }
         int num = Rq.getId(url);
-        WiseSaying wiseSaying = repository.findWiseSaying(num);
-        repository.modify(wiseSaying);
+//        WiseSaying wiseSaying = repository.findWiseSaying(num);
+        repository.modify(num);
         return;
     }
 }

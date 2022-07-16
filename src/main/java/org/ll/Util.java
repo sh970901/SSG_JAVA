@@ -22,6 +22,7 @@ public class Util {
     static Map map;
     static JSONObject obj;
     static List<String> listKey;
+    static JSONArray ja;
     Util(){
         obj = new JSONObject();
     }
@@ -53,7 +54,7 @@ public class Util {
     }
     //json 파일 저장
     void makeJsonFile(WiseSaying wiseSaying){
-        JSONArray ja = new JSONArray();
+        ja = new JSONArray();
         ja.add("내용: "+wiseSaying.content);
         ja.add("저자: "+wiseSaying.author);
         obj.put(wiseSaying.num, ja);
@@ -80,6 +81,7 @@ public class Util {
 
 
     void remove(int num) {
+        readAllFile();
         obj.remove(num);
         try {
             FileWriter file = new FileWriter("C:\\Users\\aadds\\Desktop\\codeLion\\javaPrac\\Java_SSG\\src\\wiseSaying\\wiseSaying.json");
@@ -89,6 +91,36 @@ public class Util {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+
+    }
+
+    void modify(int num) {
+        remove(num);
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("명언 : ");
+        String content = sc.nextLine();
+        System.out.print("작가 : ");
+        String author = sc.nextLine();
+
+        JSONArray ja2 = new JSONArray();
+        ja2.add("내용: "+content);
+        ja2.add("저자: "+author);
+        obj.put(num, ja2);
+//        obj.put("dd","22");
+        try {
+            FileWriter file = new FileWriter("C:\\Users\\aadds\\Desktop\\codeLion\\javaPrac\\Java_SSG\\src\\wiseSaying\\wiseSaying.json");
+            file.write(obj.toJSONString());
+            file.flush();
+            file.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+
+
 
 
     }

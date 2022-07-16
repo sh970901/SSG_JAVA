@@ -59,14 +59,8 @@ public class WiseSayingRepository {
     }
 
     //수정 처리
-    void modify(WiseSaying wiseSaying){
-        if(wiseSaying == null){
-            return;
-        }
-        System.out.print("명언 : ");
-        wiseSaying.content = sc.nextLine();
-        System.out.print("작가 : ");
-        wiseSaying.author = sc.nextLine();
+    void modify(int num){
+        util.modify(num);
         System.out.println("수정이 완료되었습니다.");
     }
 
