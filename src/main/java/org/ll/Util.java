@@ -40,27 +40,30 @@ public class Util {
     }
 
     //파일 전체 읽기
-    Map readJsonFile(){
+    void readJsonFile(){
 
         JSONParser parser = new JSONParser();
-        Map map = new HashMap<String, String>();
+        Map map = new HashMap<Integer, String>();
         try {
             FileReader reader = new FileReader("C:\\Users\\aadds\\Desktop\\codeLion\\javaPrac\\Java_SSG\\src\\wiseSaying\\wiseSaying.json");
             Object obj = parser.parse(reader);
             JSONObject jsonObject = (JSONObject) obj;
 
-            for(int i=0; i<3; i++){
-                map.put(i+1,jsonObject.get("1"));
-                System.out.println(jsonObject.get("1"));
+            for(int i=0; i<jsonObject.size(); i++){
+                map.put(i+1,jsonObject.get(Integer.toString(i+1)));
                 //문자열 처리
             }
-
             reader.close();
 
         } catch (IOException | ParseException e) {
             e.printStackTrace();
         }
-        return map;
+        for(int i=1; i<map.size()+1; i++){
+
+            String result = String.valueOf(map.get(i));
+            System.out.println(i+" / "+ result.split("\"")[1].split(":")[1] +" / "+ result.split("\"")[3].split(":")[1]);
+        }
+        return;
     }
 }
 
